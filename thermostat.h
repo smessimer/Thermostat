@@ -53,7 +53,7 @@ typedef struct hvac_output {
 /*
  * Function declarations
  */
-hvac_error control_loop( hvac_input* hvi);
+hvac_error control_loop( hvac_input* hvi, hvac_output* hvo );
 hvac_error handle_relay_output(bool fr_on, bool cr_on, bool hr_on);
 char set_frelay(bool fr_on);
 char set_crelay(bool cr_on);

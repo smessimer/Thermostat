@@ -58,7 +58,7 @@ static bool hrelay_on = false;
  * Take hvi as input, populate hvo as output.
  * Return hvac_error, which can be HVE_NOERR.
  */
-hvac_error control_loop( hvac_input* hvi) {
+hvac_error control_loop( hvac_input* hvi, hvac_output* hvo) {
 #ifdef DEBUG
     printf("hvac_input:\n");
     printf("hvi->stup = %s\n", hvi->stup ? "true" : "false");
@@ -133,7 +133,10 @@ hvac_error control_loop( hvac_input* hvi) {
                 frelay_on = false;
         }
     }
-    return handle_relay_output(frelay_on, crelay_on, hrelay_on);
+    //return handle_relay_output(frelay_on, crelay_on, hrelay_on);
+    hvo->hon = hrelay_on;
+    hvo->con = crelay_on;
+    hvo->fon = frelay_on;
 }
 
 hvac_error handle_relay_output(bool fr_on, bool cr_on, bool hr_on) {
